@@ -47,11 +47,11 @@
 }
 
 - (void)_setupDefaultValues {
-    self.activeLineColor = [UIColor redColor];
-    self.activeLineWidth = 2.0;
+    self.foregroundLineColor = [UIColor redColor];
+    self.foregroundLineWidth = 2.0;
     
-    self.drawnLineColor = [UIColor blackColor];
-    self.drawnLineWidth = 2.0;
+    self.backgroundLineColor = [UIColor blackColor];
+    self.backgroundLineWidth = 2.0;
 }
 
 - (void)_initializeRecognizer {
@@ -153,8 +153,8 @@
     [image drawInRect:CGRectMake(0, 0, screenSize.width, screenSize.height)];
     
     CGContextSetLineCap(currentContext, kCGLineCapRound);
-	CGContextSetLineWidth(currentContext, self.drawnLineWidth);
-    CGContextSetStrokeColorWithColor(currentContext, self.activeLineColor.CGColor);
+	CGContextSetLineWidth(currentContext, self.backgroundLineWidth);
+    CGContextSetStrokeColorWithColor(currentContext, self.foregroundLineColor.CGColor);
 	
     CGContextBeginPath(currentContext);
     
@@ -177,8 +177,8 @@
     [image drawInRect:CGRectMake(0, 0, screenSize.width, screenSize.height)];
     
     CGContextSetLineCap(currentContext, kCGLineCapRound);
-	CGContextSetLineWidth(currentContext, self.drawnLineWidth);
-    CGContextSetStrokeColorWithColor(currentContext, self.drawnLineColor.CGColor);
+	CGContextSetLineWidth(currentContext, self.backgroundLineWidth);
+    CGContextSetStrokeColorWithColor(currentContext, self.backgroundLineColor.CGColor);
     
 	CGContextBeginPath(currentContext);
     

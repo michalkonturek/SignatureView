@@ -10,11 +10,11 @@
 
 @interface SignatureView : UIImageView
 
-@property (nonatomic, strong) UIColor *activeLineColor;
-@property (nonatomic, strong) UIColor *drawnLineColor;
+@property (nonatomic, strong) UIColor *foregroundLineColor;
+@property (nonatomic, strong) UIColor *backgroundLineColor;
 
-@property (nonatomic, assign) CGFloat activeLineWidth;
-@property (nonatomic, assign) CGFloat drawnLineWidth;
+@property (nonatomic, assign) CGFloat foregroundLineWidth;
+@property (nonatomic, assign) CGFloat backgroundLineWidth;
 
 @property (nonatomic, strong) UILongPressGestureRecognizer *recognizer;
 
