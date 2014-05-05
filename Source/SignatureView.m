@@ -12,7 +12,7 @@
 
 @property (nonatomic, strong) NSMutableArray *drawnPoints;
 @property (nonatomic, assign) CGPoint previousPoint;
-@property (nonatomic, strong) UIImage *cleanImage;
+@property (nonatomic, strong) UIImage *tempImage;
 
 @property (nonatomic, assign) BOOL blank;
 
@@ -89,7 +89,7 @@
     return !self.blank;
 }
 
-- (NSData *)imageData {
+- (NSData *)signatureData {
     return UIImagePNGRepresentation(self.image);
 }
 
@@ -106,7 +106,7 @@
      To be able to replace the jagged polylines with the smooth
      polylines, we need to save the unmodified image.
      */
-    self.cleanImage = self.image;
+    self.tempImage = self.image;
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -122,8 +122,8 @@
 
 - (CGPoint)_touchPointForTouches:(NSSet *)touches {
     UITouch *touch = [touches anyObject];
-    CGPoint currentPoint = [touch locationInView:self];
-    return currentPoint;
+    CGPoint point = [touch locationInView:self];
+    return point;
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -131,10 +131,10 @@
     NSArray *generalizedPoints = [self _douglasPeucker:self.drawnPoints epsilon:2];
     NSArray *splinePoints = [self _catmullRomSpline:generalizedPoints segments:4];
     
-    self.image = [self _drawLineWithPoints:splinePoints image:self.cleanImage];
+    self.image = [self _drawLineWithPoints:splinePoints image:self.tempImage];
     
     self.drawnPoints = nil;
-    self.cleanImage = nil;
+    self.tempImage = nil;
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -219,7 +219,7 @@
         }
     }
     
-    //If max distance is greater than epsilon, recursively simplify
+    // If max distance is greater than epsilon, recursively simplify
     NSArray *resultList;
     if(dmax > epsilon) {
         NSArray *recResults1 = [self _douglasPeucker:[points subarrayWithRange:NSMakeRange(0, index + 1)]

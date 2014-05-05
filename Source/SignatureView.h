@@ -21,7 +21,7 @@
 - (void)clear;
 - (void)clearWithColor:(UIColor *)color;
 
-- (NSData *)imageData;
+- (NSData *)signatureData;
 
 - (BOOL)isSigned;
 
