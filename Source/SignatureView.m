@@ -37,14 +37,21 @@
 }
 
 - (void)_initialize {
-    self.userInteractionEnabled = YES;
     
-    self.activeLineColor = [UIColor redColor];
-    self.lineColor = [UIColor blackColor];
-    self.lineWidth = 1.0;
+    self.userInteractionEnabled = YES;
     self.blank = YES;
     
+    [self _setupDefaultValues];
+    
     [self _initializeRecognizer];
+}
+
+- (void)_setupDefaultValues {
+    self.activeLineColor = [UIColor redColor];
+    self.activeLineWidth = 2.0;
+    
+    self.drawnLineColor = [UIColor blackColor];
+    self.drawnLineWidth = 2.0;
 }
 
 - (void)_initializeRecognizer {
@@ -124,7 +131,7 @@
     NSArray *generalizedPoints = [self _douglasPeucker:self.drawnPoints epsilon:2];
     NSArray *splinePoints = [self _catmullRomSpline:generalizedPoints segments:4];
     
-    self.image = [self _drawPathWithPoints:splinePoints image:self.cleanImage];
+    self.image = [self _drawLineWithPoints:splinePoints image:self.cleanImage];
     
     self.drawnPoints = nil;
     self.cleanImage = nil;
@@ -135,10 +142,10 @@
 }
 
 
-#pragma mark - Drawing Lines and Paths
+#pragma mark - Drawing
 
 - (UIImage *)_drawLineFromPoint:(CGPoint)fromPoint
-                       toPoint:(CGPoint)toPoint image:(UIImage *)image {
+                        toPoint:(CGPoint)toPoint image:(UIImage *)image {
     
     CGSize screenSize = self.frame.size;
     UIGraphicsBeginImageContext(screenSize);
@@ -146,27 +153,33 @@
     [image drawInRect:CGRectMake(0, 0, screenSize.width, screenSize.height)];
     
     CGContextSetLineCap(currentContext, kCGLineCapRound);
-	CGContextSetLineWidth(currentContext, 1.0);
+	CGContextSetLineWidth(currentContext, self.drawnLineWidth);
     CGContextSetStrokeColorWithColor(currentContext, self.activeLineColor.CGColor);
-	CGContextBeginPath(currentContext);
+	
+    CGContextBeginPath(currentContext);
+    
 	CGContextMoveToPoint(currentContext, fromPoint.x, fromPoint.y);
 	CGContextAddLineToPoint(currentContext, toPoint.x, toPoint.y);
 	CGContextStrokePath(currentContext);
     
-    UIImage *ret = UIGraphicsGetImageFromCurrentImageContext();
+    UIImage *result = UIGraphicsGetImageFromCurrentImageContext();
 	UIGraphicsEndImageContext();
-    return ret;
+    
+    return result;
 }
 
-- (UIImage *)_drawPathWithPoints:(NSArray *)points image:(UIImage *)image {
+- (UIImage *)_drawLineWithPoints:(NSArray *)points image:(UIImage *)image {
+    
     CGSize screenSize = self.frame.size;
+    
     UIGraphicsBeginImageContext(screenSize);
     CGContextRef currentContext = UIGraphicsGetCurrentContext();
     [image drawInRect:CGRectMake(0, 0, screenSize.width, screenSize.height)];
     
     CGContextSetLineCap(currentContext, kCGLineCapRound);
-	CGContextSetLineWidth(currentContext, 1.0);
-    CGContextSetStrokeColorWithColor(currentContext, self.lineColor.CGColor);
+	CGContextSetLineWidth(currentContext, self.drawnLineWidth);
+    CGContextSetStrokeColorWithColor(currentContext, self.drawnLineColor.CGColor);
+    
 	CGContextBeginPath(currentContext);
     
     NSInteger count = [points count];
