@@ -20,7 +20,7 @@ To see a quick demo, simply type `pod try SignatureView`.
 
 Initialize `SignatureView` from nib or programmatically: 
 
-```
+```objc
 CGRect frame = CGRectMake(0, 100, 320, 300);
 id view = [[SignatureView alloc] initWithFrame:frame];
 [self.view addSubview:view];
@@ -33,26 +33,28 @@ You can customzie following attributes:
 
 **Line Color**
 
-```
+```objc
 self.signatureView.foregroundLineColor = [UIColor redColor];
 self.signatureView.backgroundLineColor = [UIColor blueColor];
 ```
 
 **Line Width**
 
-```
+```objc
 self.signatureView.foregroundLineWidth = 3.0;
 self.signatureView.backgroundLineWidth = 3.0;
 ```
 
+### Signature
+
 A signature image can be retrieved by UIImage object:
 
-```
+```objc
 UIImage *signature = [self.signatureView signatureImage];
 ```
 or by PNG representation:
 
-```
+```objc
 NSData *signatureData = [self.signatureView signatureData];
 ```
 
