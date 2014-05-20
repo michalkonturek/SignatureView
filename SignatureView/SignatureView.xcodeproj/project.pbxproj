@@ -21,6 +21,7 @@
 		908B4A6D19171F1200F51835 /* SignatureViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 908B4A6C19171F1200F51835 /* SignatureViewTests.m */; };
 		908B4A7A19171F7000F51835 /* ExampleViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 908B4A7819171F7000F51835 /* ExampleViewVC.m */; };
 		908B4A7B19171F7000F51835 /* ExampleViewVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 908B4A7919171F7000F51835 /* ExampleViewVC.xib */; };
+		908B4A80191721C800F51835 /* SignatureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 908B4A7F191721C800F51835 /* SignatureView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,8 @@
 		908B4A7719171F7000F51835 /* ExampleViewVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleViewVC.h; sourceTree = "<group>"; };
 		908B4A7819171F7000F51835 /* ExampleViewVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExampleViewVC.m; sourceTree = "<group>"; };
 		908B4A7919171F7000F51835 /* ExampleViewVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExampleViewVC.xib; sourceTree = "<group>"; };
+		908B4A7E191721C800F51835 /* SignatureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignatureView.h; sourceTree = "<group>"; };
+		908B4A7F191721C800F51835 /* SignatureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignatureView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +115,7 @@
 		908B4A4D19171F1200F51835 /* SignatureView */ = {
 			isa = PBXGroup;
 			children = (
+				908B4A7D1917219100F51835 /* Source */,
 				908B4A7619171F4900F51835 /* Example */,
 				908B4A5619171F1200F51835 /* AppDelegate.h */,
 				908B4A5719171F1200F51835 /* AppDelegate.m */,
@@ -158,6 +162,16 @@
 				908B4A7919171F7000F51835 /* ExampleViewVC.xib */,
 			);
 			path = Example;
+			sourceTree = "<group>";
+		};
+		908B4A7D1917219100F51835 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				908B4A7E191721C800F51835 /* SignatureView.h */,
+				908B4A7F191721C800F51835 /* SignatureView.m */,
+			);
+			name = Source;
+			path = ../../Source;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,6 +273,7 @@
 				908B4A5819171F1200F51835 /* AppDelegate.m in Sources */,
 				908B4A5419171F1200F51835 /* main.m in Sources */,
 				908B4A7A19171F7000F51835 /* ExampleViewVC.m in Sources */,
+				908B4A80191721C800F51835 /* SignatureView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
