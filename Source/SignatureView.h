@@ -18,6 +18,8 @@
 
 @property (nonatomic, strong) UILongPressGestureRecognizer *recognizer;
 
+- (void)setLineWidth:(CGFloat)width;
+
 - (void)clear;
 - (void)clearWithColor:(UIColor *)color;
 

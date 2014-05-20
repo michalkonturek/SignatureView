@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class SignatureView;
+
 @interface ExampleViewVC : UIViewController
+
+@property (nonatomic, weak) IBOutlet SignatureView *signatureView;
 
 @end

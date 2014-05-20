@@ -42,16 +42,15 @@
     self.blank = YES;
     
     [self _setupDefaultValues];
-    
     [self _initializeRecognizer];
 }
 
 - (void)_setupDefaultValues {
     self.foregroundLineColor = [UIColor redColor];
-    self.foregroundLineWidth = 2.0;
+    self.foregroundLineWidth = 3.0;
     
     self.backgroundLineColor = [UIColor blackColor];
-    self.backgroundLineWidth = 2.0;
+    self.backgroundLineWidth = 3.0;
 }
 
 - (void)_initializeRecognizer {
@@ -59,6 +58,11 @@
                                                                   action:@selector(clear)];
     self.recognizer = recognizer;
     [self addGestureRecognizer:recognizer];
+}
+
+- (void)setLineWidth:(CGFloat)width {
+    self.backgroundLineWidth = width;
+    self.foregroundLineWidth = width;
 }
 
 - (void)clear {
@@ -149,18 +153,19 @@
     
     CGSize screenSize = self.frame.size;
     UIGraphicsBeginImageContext(screenSize);
-    CGContextRef currentContext = UIGraphicsGetCurrentContext();
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
     [image drawInRect:CGRectMake(0, 0, screenSize.width, screenSize.height)];
     
-    CGContextSetLineCap(currentContext, kCGLineCapRound);
-	CGContextSetLineWidth(currentContext, self.backgroundLineWidth);
-    CGContextSetStrokeColorWithColor(currentContext, self.foregroundLineColor.CGColor);
+    CGContextSetLineCap(context, kCGLineCapRound);
+	CGContextSetLineWidth(context, self.foregroundLineWidth);
+    CGContextSetStrokeColorWithColor(context, self.foregroundLineColor.CGColor);
 	
-    CGContextBeginPath(currentContext);
+    CGContextBeginPath(context);
     
-	CGContextMoveToPoint(currentContext, fromPoint.x, fromPoint.y);
-	CGContextAddLineToPoint(currentContext, toPoint.x, toPoint.y);
-	CGContextStrokePath(currentContext);
+	CGContextMoveToPoint(context, fromPoint.x, fromPoint.y);
+	CGContextAddLineToPoint(context, toPoint.x, toPoint.y);
+	CGContextStrokePath(context);
     
     UIImage *result = UIGraphicsGetImageFromCurrentImageContext();
 	UIGraphicsEndImageContext();
@@ -173,23 +178,24 @@
     CGSize screenSize = self.frame.size;
     
     UIGraphicsBeginImageContext(screenSize);
-    CGContextRef currentContext = UIGraphicsGetCurrentContext();
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
     [image drawInRect:CGRectMake(0, 0, screenSize.width, screenSize.height)];
     
-    CGContextSetLineCap(currentContext, kCGLineCapRound);
-	CGContextSetLineWidth(currentContext, self.backgroundLineWidth);
-    CGContextSetStrokeColorWithColor(currentContext, self.backgroundLineColor.CGColor);
+    CGContextSetLineCap(context, kCGLineCapRound);
+	CGContextSetLineWidth(context, self.backgroundLineWidth);
+    CGContextSetStrokeColorWithColor(context, self.backgroundLineColor.CGColor);
     
-	CGContextBeginPath(currentContext);
+	CGContextBeginPath(context);
     
     NSInteger count = [points count];
     CGPoint point = [[points objectAtIndex:0] CGPointValue];
-	CGContextMoveToPoint(currentContext, point.x, point.y);
+	CGContextMoveToPoint(context, point.x, point.y);
     for(int i = 1; i < count; i++) {
         point = [[points objectAtIndex:i] CGPointValue];
-        CGContextAddLineToPoint(currentContext, point.x, point.y);
+        CGContextAddLineToPoint(context, point.x, point.y);
     }
-    CGContextStrokePath(currentContext);
+    CGContextStrokePath(context);
     
     UIImage *result = UIGraphicsGetImageFromCurrentImageContext();
 	UIGraphicsEndImageContext();
