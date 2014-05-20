@@ -21,7 +21,7 @@ To see a quick demo, simply type `pod try SignatureView`.
 Initialize `SignatureView` from nib or programmatically: 
 
 ```objc
-CGRect frame = CGRectMake(0, 100, 320, 300);
+CGRect frame = CGRectMake(0, 40, 320, 300);
 id view = [[SignatureView alloc] initWithFrame:frame];
 [self.view addSubview:view];
 self.signatureView = view;
