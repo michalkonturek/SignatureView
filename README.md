@@ -15,3 +15,48 @@ Source code of this project is available under the standard MIT license. Please 
 
 
 ## Usage
+
+To see a quick demo, simply type `pod try SignatureView`.
+
+Initialize `SignatureView` from nib or programmatically: 
+
+```
+CGRect frame = CGRectMake(0, 100, 320, 300);
+id view = [[SignatureView alloc] initWithFrame:frame];
+[self.view addSubview:view];
+self.signatureView = view;
+```
+
+### Customization
+
+You can customzie following attributes:
+
+**Line Color**
+
+```
+self.signatureView.foregroundLineColor = [UIColor redColor];
+self.signatureView.backgroundLineColor = [UIColor blueColor];
+```
+
+**Line Width**
+
+```
+self.signatureView.foregroundLineWidth = 3.0;
+self.signatureView.backgroundLineWidth = 3.0;
+```
+
+A signature image can be retrieved by UIImage object:
+
+```
+UIImage *signature = [self.signatureView signatureImage];
+```
+or by PNG representation:
+
+```
+NSData *signatureData = [self.signatureView signatureData];
+```
+
+### Clearing
+
+`SignatureView` comes with a `UILongPressGestureRecognizer` which is responsible for clearning its view;
+

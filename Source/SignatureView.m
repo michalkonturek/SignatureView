@@ -60,6 +60,11 @@
     [self addGestureRecognizer:recognizer];
 }
 
+- (void)setLineColor:(UIColor *)color {
+    self.foregroundLineColor = color;
+    self.backgroundLineColor = color;
+}
+
 - (void)setLineWidth:(CGFloat)width {
     self.backgroundLineWidth = width;
     self.foregroundLineWidth = width;
@@ -91,6 +96,10 @@
 
 - (BOOL)isSigned {
     return !self.blank;
+}
+
+- (UIImage *)signatureImage {
+    return [self.image copy];
 }
 
 - (NSData *)signatureData {

@@ -18,11 +18,13 @@
 
 @property (nonatomic, strong) UILongPressGestureRecognizer *recognizer;
 
+- (void)setLineColor:(UIColor *)color;
 - (void)setLineWidth:(CGFloat)width;
 
 - (void)clear;
 - (void)clearWithColor:(UIColor *)color;
 
+- (UIImage *)signatureImage;
 - (NSData *)signatureData;
 
 - (BOOL)isSigned;
