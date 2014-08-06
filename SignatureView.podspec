@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "SignatureView"
-  s.version      = "1.0.0"
+  s.version      = "1.1.0"
   s.summary      = "UI component for capturing signature."
   s.homepage     = "https://github.com/michalkonturek/SignatureView"
   s.license      = 'MIT'
@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
 
   s.source       = { 
     :git => "https://github.com/michalkonturek/SignatureView.git", 
-    :tag => "1.0.0" 
+    :tag => s.version.to_s
   }
 
   s.source_files = 'Source/**/*.{h,m}'
